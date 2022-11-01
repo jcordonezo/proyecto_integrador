@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Habitacion;
+use \PDF;
+
 
 class HabitacionController extends Controller
 {
@@ -15,7 +17,7 @@ class HabitacionController extends Controller
     public function index()
     {
         $habitaciones = Habitacion::all();
-        return view('gestionhabitacion', compact('habitaciones'));
+        return view('Habitaciones.gestionHabitaciones', compact('habitaciones'));
     }
 
     /**
@@ -40,7 +42,8 @@ class HabitacionController extends Controller
         $habitacion->numero_habitacion = $request->numero_habitacion;
         $habitacion->camas = $request->numero_camas;
         $habitacion->save();
-        return redirect()->route('habitacion.index');
+
+        return redirect()->route('habitaciones.index');
     }
 
     /**
@@ -62,7 +65,8 @@ class HabitacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $habitaciones = Habitacion::find($id);
+        return view('Habitaciones.editarHabitacion', compact('habitaciones'));
     }
 
     /**
@@ -74,7 +78,11 @@ class HabitacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        $habitacion->numero_habitacion = $request->numero_habitacion;
+        $habitacion->camas = $request->numero_camas;
+        $habitacion->save();
+        return redirect()->route('habitaciones.index')->with('actualizado', 'Habitación actualizada con éxito');
     }
 
     /**
@@ -85,6 +93,16 @@ class HabitacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $habitacion = Habitacion::find($id);
+        $habitacion->delete();
+        return redirect()->route('habitaciones.index')->with('eliminado', 'Habitación eliminada con éxito');
+
     }
+
+    public function pdf(){
+        $habitaciones = Habitacion::all();
+        $pdf = PDF::loadView('Habitaciones.reporte',["habitaciones" => $habitaciones]);
+        return $pdf->stream('reporte_habitaciones.pdf', array('Attachment' => 0));
+    }
+
 }

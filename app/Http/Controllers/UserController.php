@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Rol;
+use \PDF;
+
 
 class UserController extends Controller
 {
@@ -13,7 +17,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        $roles = Rol::all();
+        return view('Usuarios.gestionUsuarios', compact('usuarios', 'roles'));
+
     }
 
     /**
@@ -34,7 +41,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->contrasenia == $request->contraseniaDos){
+        $usuario = new User();
+        $usuario->id_rol = $request->id_rol;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->documento = $request->documento;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->password = $request->contrasenia;
+        $usuario->save();
+        return redirect()->route('usuarios.index')->with('creado', 'Usuario creado con éxito');
+        }else{
+            return redirect()->route('usuarios.index')->with('error', 'Las contraseñas no coinciden');
+        }
     }
 
     /**
@@ -56,7 +76,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+        $roles = Rol::all();
+        return view('Usuarios.editarUsuario', compact('usuario', 'roles'));
     }
 
     /**
@@ -68,7 +90,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->id_rol = $request->id_rol;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->documento = $request->documento;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->password = $request->contrasenia;
+        $usuario->save();
+        return redirect()->route('usuarios.index')->with('actualizado', 'Usuario actualizado con éxito');
+        
     }
 
     /**
@@ -79,6 +111,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->delete();
+        return redirect()->route('usuarios.index')->with('eliminado', 'Usuario eliminado con éxito');
     }
+
+    public function pdf(){
+        $usuarios = User::all();
+        $pdf = PDF::loadView('Usuarios.reporte',["usuarios" => $usuarios]);
+        return $pdf->stream('reporte_usuarios.pdf', array('Attachment' => 0));
+    }
+
 }

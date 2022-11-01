@@ -19,7 +19,12 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::resource('habitacion', 'App\http\Controllers\habitacionController');
+Route::resource('habitaciones', 'App\http\Controllers\habitacionController');
+Route::resource('usuarios', 'App\http\Controllers\UserController');
+Route::resource('roles', 'App\http\Controllers\RolController');
+Route::get('roles-pdf', 'App\http\Controllers\RolController@pdf')->name('roles.pdf');
+Route::get('usuarios-pdf', 'App\http\Controllers\UserController@pdf')->name('usuarios.pdf');
+Route::get('habitaciones-pdf', 'App\http\Controllers\habitacionController@pdf')->name('habitaciones.pdf');
 
 Auth::routes();
 

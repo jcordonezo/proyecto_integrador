@@ -76,4 +76,9 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function docente()
+    {
+        return $this->belongsTo('App\Models\Rol');
+    }
 }

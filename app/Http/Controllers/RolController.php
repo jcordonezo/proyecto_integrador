@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rol;
+// use Barryvdh\DomPDF\Facade as PDF;
+use \PDF;
 
 class RolController extends Controller
 {
@@ -13,7 +16,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Rol::all();
+        return view('Roles.gestionRoles')->with('roles', $roles);
     }
 
     /**
@@ -34,7 +38,10 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rol = new Rol();
+        $rol->nombre = $request->nombre_rol;
+        $rol->save();
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -45,7 +52,7 @@ class RolController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +63,8 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rol = Rol::find($id);
+        return view('Roles.editarRol')->with('rol', $rol);
     }
 
     /**
@@ -68,7 +76,10 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->nombre = $request->nombre_rol;
+        $rol->save();
+        return redirect()->route('roles.index')->with('actualizado', 'Rol actualizado correctamente');
     }
 
     /**
@@ -79,6 +90,14 @@ class RolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->delete();
+        return redirect()->route('roles.index')->with('eliminado', 'Rol eliminado correctamente');
+    }
+
+    public function pdf(){
+        $roles = Rol::all();
+        $pdf = PDF::loadView('roles.reporte',["roles" => $roles]);
+        return $pdf->stream('reporte_roles.pdf', array('Attachment' => 0));
     }
 }

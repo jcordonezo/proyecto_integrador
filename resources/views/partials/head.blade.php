@@ -39,7 +39,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="index.html"><img src="{{asset('main/images/logo.png')}}" alt="#" /></a>
+                                <a href="{{route('main')}}" ><img src="{{asset('main/images/logo.png')}}" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -55,13 +55,13 @@
                                     <a class="nav-link" href="{{route('main')}}">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
+                                    <a class="nav-link" href="{{route('roles.index')}}">Roles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="room.html">Our room</a>
+                                    <a class="nav-link" href="{{route('usuarios.index')}}">Usuarios</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="gallery.html">Gallery</a>
+                                    <a class="nav-link" href="{{route('habitaciones.index')}}">Habitaciones</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="blog.html">Blog</a>
