@@ -41,6 +41,10 @@ class HabitacionController extends Controller
         $habitacion = new Habitacion();
         $habitacion->numero_habitacion = $request->numero_habitacion;
         $habitacion->camas = $request->numero_camas;
+        $habitacion->tipo_cama = $request->tipo_cama;
+        $habitacion->banio_privado = $request->banio_privado;
+        $habitacion->tipo_habitacion = $request->tipo_habitacion;
+        $habitacion->precio_base = $request->precio_base;
         $habitacion->save();
 
         return redirect()->route('habitaciones.index');

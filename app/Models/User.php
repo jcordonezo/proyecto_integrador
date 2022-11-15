@@ -18,7 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'id_rol',
+        'nombre',
+        'apellido',
+        'documento',
+        'telefono',
         'email',
         'password',
     ];
@@ -41,6 +45,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+public function rol(){
+    return $this->hasOne(Rol::class, 'id', 'id_rol');
+}
+
+
+
+
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role')->withTimestamps();
@@ -77,8 +89,5 @@ class User extends Authenticatable
         return false;
     }
 
-    public function docente()
-    {
-        return $this->belongsTo('App\Models\Rol');
-    }
+
 }

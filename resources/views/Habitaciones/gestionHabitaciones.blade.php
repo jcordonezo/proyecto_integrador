@@ -20,6 +20,31 @@
                         <br>
                         <label for="numero_camas">Indique el número de camas:</label>
                         <input required id="numero_camas" type="number" name="numero_camas" class="form-control" placeholder="Ejemplo: 2">
+                        <br>
+                        <label for="precio">Indique el precio de la habitación (precio base):</label>
+                        <input required id="precio" type="number" name="precio_base" class="form-control" placeholder="Ejemplo: 50">
+                        <br>
+                        <label for="tipo_cama">Indique el tipo de cama:</label>
+                        <select required id="tipo_cama" name="tipo_cama" class="form-control">
+                            <option value="Individual">Individual</option>
+                            <option value="Matrimonial">Matrimonial</option>
+                            <option value="Queen">Queen</option>
+                            <option value="King">King</option>
+                        </select>
+                        <br>
+                        <label for="tipo">Indique el tipo de habitación:</label>
+                        <select required id="tipo" name="tipo_habitacion" class="form-control">
+                            <option value="Individual">Individual</option>
+                            <option value="Doble">Doble</option>
+                            <option value="Familiar">Familiar</option>
+                        </select>
+                        <br>
+                        <label for="banio_privado">¿Tiene baño privado?</label>
+                        <select required id="banio_privado" name="banio_privado" class="form-control">
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
                         <button id="boton" type="submit" class="btn btn-primary mt-4">Guardar</button>
                         </div>
                     </div>
@@ -51,6 +76,10 @@
                     <th scope="col">Id</th>
                     <th scope="col">Número de habitación</th>
                     <th scope="col">Camas</th>
+                    <th scope="col">Tipo de cama</th>
+                    <th scope="col">Tipo de habitación</th>
+                    <th scope="col">Baño privado</th>
+                    <th scope="col">Precio base</th>
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
@@ -60,6 +89,10 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$habitaciones->numero_habitacion}}</td>
                         <td>{{$habitaciones->camas}}</td>
+                        <td>{{$habitaciones->tipo_cama}}</td>
+                        <td>{{$habitaciones->tipo_habitacion}}</td>
+                        <td>{{$habitaciones->banio_privado}}</td>
+                        <td>${{$habitaciones->precio_base}}</td>
                         <td>
                             <a href="{{ route('habitaciones.edit', $habitaciones->id) }}" class="btn btn-warning">Editar</a>
                             <form action="{{ route('habitaciones.destroy', $habitaciones->id) }}" method="POST" class="d-inline">

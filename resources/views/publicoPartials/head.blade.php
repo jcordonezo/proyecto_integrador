@@ -54,40 +54,12 @@
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{{route('main')}}">Inicio</a>
                                 </li>
-                                @if(Auth::check())
-                                @if(Auth::user()->rol->nombre=='Usuario')
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('habitaciones.index')}}">Habitaciones</a>
-                                </li>
-                                @endif
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('reservas.index')}}">Reservas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('roles.index')}}">Roles</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('usuarios.index')}}">Usuarios</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Cerrar sesión') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                </li>
-                                @else
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('habitacionesPublicas')}}">Habitaciones</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('login')}}">Inicio de sesión</a>
                                 </li>
-                                @endif
                             </ul>
                         </div>
                     </nav>

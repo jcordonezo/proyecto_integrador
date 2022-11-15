@@ -17,6 +17,10 @@ class HabitacionesTable extends Migration
             $table->id();
             $table->string('numero_habitacion');
             $table->integer('camas');
+            $table->string('tipo_cama');
+            $table->string('banio_privado');
+            $table->string('tipo_habitacion');
+            $table->float('precio_base');
             $table->timestamps();
         });
     }

@@ -23,19 +23,19 @@
                         </select>
                         <br>
                         <label for="nombre">Nombre:</label>
-                        <input required type="text" name="nombre" id="nombre" class="form-control" placeholder="Ejemplo: Jhan Carlos" aria-describedby="helpId" required>
+                        <input required type="text" name="nombre" id="nombre" class="form-control" placeholder="Ejemplo: Alberto" aria-describedby="helpId" required>
                         <br>
                         <label for="apellido">Apellido:</label>
-                        <input required type="text" name="apellido" id="apellido" class="form-control" placeholder="Ejemplo: Ordoñez" aria-describedby="helpId" required>
+                        <input required type="text" name="apellido" id="apellido" class="form-control" placeholder="Ejemplo: Gómez" aria-describedby="helpId" required>
                         <br>
                         <label for="documento">Documento:</label>
-                        <input required type="number" name="documento" id="documento" class="form-control" placeholder="Ejemplo: 12345678" aria-describedby="helpId" required>
+                        <input required type="number" name="documento" id="documento" class="form-control" placeholder="Ejemplo: 1053123456" aria-describedby="helpId" required>
                         <br>
                         <label for="email">Correo:</label>
-                        <input required type="email" name="email" id="email" class="form-control" placeholder="Ejemplo: jcarlos@gmail.com" aria-describedby="helpId" required>
+                        <input required type="email" name="email" id="email" class="form-control" placeholder="Ejemplo: alberto@gmail.com" aria-describedby="helpId" required>
                         <br>
                         <label for="telefono">Celular:</label>
-                        <input required type="number" name="telefono" id="telefono" class="form-control" placeholder="Ejemplo: 39283733" aria-describedby="helpId" required>
+                        <input required type="number" name="telefono" id="telefono" class="form-control" placeholder="Ejemplo: 3108970106" aria-describedby="helpId" required>
                         <br>
                         <label for="contrasenia">Contraseña:</label>
                         <input min="5" required type="password" name="contrasenia" id="contrasenia" class="form-control" placeholder="" aria-describedby="helpId" required>
